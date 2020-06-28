@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Pymodbus Synchronous Server Example
 --------------------------------------------------------------------------
@@ -12,9 +12,9 @@ twisted is just not feasible. What follows is an example of its use:
 # import the various server implementations
 # --------------------------------------------------------------------------- #
 from pymodbus.server.sync import StartTcpServer
-from pymodbus.server.sync import StartTlsServer
-from pymodbus.server.sync import StartUdpServer
-from pymodbus.server.sync import StartSerialServer
+#from pymodbus.server.sync import StartTlsServer
+#from pymodbus.server.sync import StartUdpServer
+#from pymodbus.server.sync import StartSerialServer
 
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock, ModbusSparseDataBlock
@@ -112,11 +112,10 @@ def run_server():
     # run the server you want
     # ----------------------------------------------------------------------- #
     # Tcp:
-    StartTcpServer(context, identity=identity, address=("localhost", 5020))
+    StartTcpServer(context, identity=identity, address=("0.0.0.0", 5020))
 
     # TCP with different framer
-    # StartTcpServer(context, identity=identity,
-    #                framer=ModbusRtuFramer, address=("0.0.0.0", 5020))
+    # StartTcpServer(context=context, identity=identity, framer=ModbusRtuFramer, address=("0.0.0.0", 5020))
 
     # TLS
     # StartTlsServer(context, identity=identity, certfile="server.crt",
@@ -142,4 +141,5 @@ def run_server():
 
 
 if __name__ == "__main__":
+    print("Starting server on port 5020.");
     run_server()
